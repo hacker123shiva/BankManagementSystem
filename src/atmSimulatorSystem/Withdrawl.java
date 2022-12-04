@@ -49,11 +49,7 @@ public class Withdrawl extends JFrame implements ActionListener {
     b2.setBounds(390,633,150,35);
     b2.addActionListener(this);
     l3.add(b2);
-    
-    b2 = new JButton("BACK");
-    b2.setBounds(390,633,150,35);
-    b2.addActionListener(this);
-    l3.add(b2);
+   
     
     setSize(960,1080);
     setUndecorated(true);
