@@ -9,13 +9,13 @@ public class BalanceEquiry extends JFrame implements ActionListener{
 JTextField t1,t2;
 JButton b1,b2,b3;
 JLabel l1,l2,l3;
-String pin;
-public BalanceEquiry(String pin)
+String cardno;
+public BalanceEquiry(String cardno)
 {
 	setTitle("Balance Enquiry");
 	setLayout(null);
 	
-	this.pin =pin;
+	this.cardno =cardno;
     ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("atmSimulatorSystem/icons/atm.jpg"));
     Image i2=i1.getImage().getScaledInstance(1000, 1180, Image.SCALE_DEFAULT);
     ImageIcon i3=new ImageIcon(i2);
@@ -37,7 +37,7 @@ public BalanceEquiry(String pin)
     int balance = 0;
     try{
         Conn c1 = new Conn();
-        String query="select * from bank where pin = '"+pin+"'";
+        String query="select * from bank where cardnumber = '"+cardno+"'";
         ResultSet rs = c1.statement.executeQuery( query);
         while (rs.next()) {
             if (rs.getString("type").equals("Deposit")) {
@@ -60,7 +60,7 @@ public BalanceEquiry(String pin)
 @Override
 public void actionPerformed(ActionEvent e) {
     setVisible(false);
-    new Transactions(pin).setVisible(true);
+    new Transactions(cardno).setVisible(true);
 	
 }
 	

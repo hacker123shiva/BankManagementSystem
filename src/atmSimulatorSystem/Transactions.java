@@ -8,10 +8,10 @@ import java.awt.event.*;
 public class Transactions extends JFrame implements ActionListener{
     JLabel l1;
     JButton b1,b2,b3,b4,b5,b6,b7;
-    String pin;
- public   Transactions(String pin)
+    String cardno;
+ public   Transactions(String cardno)
     {  setLayout(null);
-    	this.pin=pin;
+    	this.cardno=cardno;
     	ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("atmSimulatorSystem/icons/atm.jpg"));
     	Image i2=i1.getImage().getScaledInstance(1000, 1180, Image.SCALE_DEFAULT);
     	ImageIcon i3=new ImageIcon(i2);
@@ -70,21 +70,21 @@ public class Transactions extends JFrame implements ActionListener{
 	  public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==b1){ 
             setVisible(false);
-            new Deposit(pin).setVisible(true);
+            new Deposit(cardno).setVisible(true);
         }else if(ae.getSource()==b2){ 
             setVisible(false);
-            new Withdrawl(pin).setVisible(true);
+            new Withdrawl(cardno).setVisible(true);
         }else if(ae.getSource()==b3){ 
             setVisible(false);
-            new FastCash(pin).setVisible(true);
+            new FastCash(cardno).setVisible(true);
         }else if(ae.getSource()==b4){ 
-            new MiniStatement(pin).setVisible(true);
+            new MiniStatement(cardno).setVisible(true);
         }else if(ae.getSource()==b5){ 
             setVisible(false);
-            new Pin(pin).setVisible(true);
+            new Pin(cardno).setVisible(true);
         }else if(ae.getSource()==b6){ 
             this.setVisible(false);
-            new BalanceEquiry(pin).setVisible(true);
+            new BalanceEquiry(cardno).setVisible(true);
         }else if(ae.getSource()==b7){ 
             System.exit(0);
         }

@@ -9,10 +9,10 @@ public class Pin extends JFrame implements ActionListener{
 	    JPasswordField t1,t2;
 	    JButton b1,b2;                               
 	    JLabel l1,l2,l3;
-	    String pin;
-public 	Pin(String pin)
+	    String cardno;
+public 	Pin(String cardno)
 	{setLayout(null);
-	    this.pin = pin;
+	    this.cardno = cardno;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("atmSimulatorSystem/icons/atm.jpg"));
         Image i2 = i1.getImage().getScaledInstance(1000, 1180, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -86,11 +86,10 @@ public void actionPerformed(ActionEvent ae)
               JOptionPane.showMessageDialog(null, "Field cannot be empty");
           }
           Conn c1 = new Conn();
-          String q1 = "update bank set pin = '"+rpin+"' where pin = '"+pin+"' ";
-          String q2 = "update login set pin = '"+rpin+"' where pin = '"+pin+"' ";
-          String q3 = "update signupthree set pin = '"+rpin+"' where pin = '"+pin+"' ";
+          String q2 = "update login set pin = '"+rpin+"' where cardnumber = '"+cardno+"' ";
+          String q3 = "update signupthree set pin = '"+rpin+"' where cardnumber = '"+cardno+"' ";
 
-          c1.statement.executeUpdate(q1);
+ 
           c1.statement.executeUpdate(q2);
           c1.statement.executeUpdate(q3);
 
@@ -99,7 +98,7 @@ public void actionPerformed(ActionEvent ae)
           new Transactions(rpin).setVisible(true);
 	  }
 	  else if(ae.getSource()==b2){
-          new Transactions(pin).setVisible(true);
+          new Transactions(cardno).setVisible(true);
           setVisible(false);  
 	  }
 	}

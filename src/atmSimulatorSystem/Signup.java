@@ -13,17 +13,14 @@ public class Signup extends JFrame implements  ActionListener{
 	JRadioButton r1,r2,r3,r4,r5,r6;
 	JButton b;
 	JDateChooser dateChooser;
-	
-Random ran=new Random();
-long first4 = (ran.nextLong()%9000L)+1000L;
-String first =""+Math.abs(first4);
+Random ran =new Random();
+long first4 =(ran.nextLong()%9000L)+1000L;
+String first = ""+Math.abs(first4);
 
 Signup(){
     setTitle("NEW ACCOUNT APPLICATION FORM");
 //set default layout be null
     setLayout(null);
- 
-
 //load image 
     ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("atmSimulatorSystem/icons/logo2.png"));
 //Scaled the image
@@ -219,21 +216,29 @@ public void actionPerformed(ActionEvent ae) {
 	 boolean nameflag=false;
 	 for(int i = 0; i < name.length(); i++)
      {
-         if(name.charAt(i) >= 'Z'&&name.charAt(i) <= 'a' || name.charAt(i) >= 'z'||name.charAt(i) <= 'A' ||name.charAt(i)==' ')
+         if(name.charAt(i) >= 'a'&&name.charAt(i) <= 'z' || name.charAt(i) >= 'A'&& name.charAt(i)<='Z'||name.charAt(i)==' ')
+         {
+         
+         }
+         else
          {
         	 nameflag=true;
-        		break;
+     		break;
          }
      }
 	 String fname =t2.getText();
 	 boolean fnameflag=false;
 	 for(int i = 0; i < fname.length(); i++)
      {
-         if(fname.charAt(i) >= 'Z'&&fname.charAt(i) <= 'a' || fname.charAt(i) >= 'z'||fname.charAt(i) <= 'A' ||fname.charAt(i)==' ')
-         {
-        	 fnameflag=true;
-        		break;
-         }
+		   if(fname.charAt(i) >= 'a'&&fname.charAt(i) <= 'z' || fname.charAt(i) >= 'A'&& fname.charAt(i)<='Z'||fname.charAt(i)==' ')
+	         {
+	         
+	         }
+	         else
+	         {
+	        	 fnameflag=true;
+	     		break;
+	         }
      }
 	 String dob=((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
 //	 calcaulate age of person 
@@ -278,11 +283,11 @@ public void actionPerformed(ActionEvent ae) {
 	 }
 	 else  if(r5.isSelected())
 	 {
-		 gender ="Unmarried";
+		 marital ="Unmarried";
 	 }
 	 else if(r6.isSelected())
 	 {
-		 gender="Others";
+		 marital="Others";
 	 }
  
 	 String email=t3.getText();
@@ -318,73 +323,85 @@ public void actionPerformed(ActionEvent ae) {
      String state = t7.getText();
      
      try{
-    	 if(name.trim()==""){
+    	 if(name.trim()=="")
+    	 { 
              JOptionPane.showMessageDialog(null, "Empty field");
          }
     	 
-          else if(nameflag){
-        	 JOptionPane.showMessageDialog(null, "Enter proper name"); 
+          else if(nameflag)
+          { 
+           JOptionPane.showMessageDialog(null, "Enter proper name"); 
  	      }
+    	 
           else if(fname.trim()=="")
           {
-        	  JOptionPane.showMessageDialog(null, "Empty field");
+           JOptionPane.showMessageDialog(null, "Empty field");
           }
+    	 
           else if(fnameflag )
           {
      	   JOptionPane.showMessageDialog(null, "Enter Proper Fname"); 
           }
+    	 
           else if(age<18)
           {
-        	  JOptionPane.showMessageDialog(null,"Your age should greater than or equal to 18");
+           JOptionPane.showMessageDialog(null,"Your age should greater than or equal to 18");
           }
+    	 
           else if(gender==null)
           {
-        	  JOptionPane.showMessageDialog(null,"Choose Gender");
+           JOptionPane.showMessageDialog(null,"Choose Gender");
           }
+    	 
           else if(!matcher.matches())
           {
-         	 JOptionPane.showMessageDialog(null, "Enter proper email");   
+           JOptionPane.showMessageDialog(null, "Enter proper email");   
           }
+    	 
           else if(marital==null)
           {
-        	  JOptionPane.showMessageDialog(null, "Choose Marital status");
+           JOptionPane.showMessageDialog(null, "Choose Marital status");
           }
-          else if(t4.getText().trim().equals("")){
+    	 
+          else if(t4.getText().trim().equals(""))
+          {
+           JOptionPane.showMessageDialog(null, "Fill all the required fields");
+          }
+    	 
+         else if(t5.getText().trim().equals(""))
+         {
           JOptionPane.showMessageDialog(null, "Fill all the required fields");
-   }
-   else if(t5.getText().trim().equals("")){
-       JOptionPane.showMessageDialog(null, "Fill all the required fields");
-   }
-   else if(t6.getText().trim().equals("")){
-       JOptionPane.showMessageDialog(null, "Fill all the required fields");
-   }
-   else if(pinflag)
-   {
-	   JOptionPane.showMessageDialog(null,"pincode should only be digit");
-   }
-   else if(t6.getText().length()!=6)
-   {
-	   JOptionPane.showMessageDialog(null,"Pincode should be 6 digits");
-   }
-   else if(t7.getText().trim().equals(""))
-   {
+         }
+    	 
+         else if(t6.getText().trim().equals(""))
+         {
+          JOptionPane.showMessageDialog(null, "Fill all the required fields");
+        }
+    	 
+         else if(pinflag)
+        {
+	     JOptionPane.showMessageDialog(null,"pincode should only be digit");
+        }
+         else if(t6.getText().length()!=6)
+       {
+	    JOptionPane.showMessageDialog(null,"Pincode should be 6 digits");
+       }
+        else if(t7.getText().trim().equals(""))
+      {
 	   JOptionPane.showMessageDialog(null,"Field  should not be empty");
-   }
-         else{
+      }
+       else
+       {
              Conn con = new Conn();
              String q1="insert into signup values ('"+formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+pincode+"','"+state+"')";
              con.statement.executeUpdate(q1);
            
              new Signup2(first).setVisible(true);
              setVisible(false);
-         }
+       }
          
      }catch(Exception e){
           e.printStackTrace();
      }
 }
-
- 
- 
-
 }

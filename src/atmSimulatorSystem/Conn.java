@@ -46,7 +46,7 @@ query="create table if not exists login(formno varchar(20), cardnumber varchar(2
 statement.executeUpdate(query);
 
 //create bank table
-query="create table if not exists bank(pin varchar(10), date varchar(50), type varchar(20), amount varchar(20))";
+query="create table if not exists bank(cardnumber varchar(25), date varchar(50), type varchar(20), amount varchar(20))";
 statement.executeUpdate(query);
 }
 

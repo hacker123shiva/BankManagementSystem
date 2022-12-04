@@ -8,11 +8,11 @@ public class Deposit extends JFrame implements ActionListener {
 	JTextField t1,t2;
     JButton b1,b2,b3;
     JLabel l1,l2,l3;
-    String pin;
+    String cardno;
     
-    public Deposit(String pin)
+    public Deposit(String cardno)
     {setLayout(null);
-    	this.pin=pin;
+    	this.cardno=cardno;
     ImageIcon i1 =new ImageIcon(ClassLoader.getSystemResource("atmSimulatorSystem/icons/atm.jpg"));
     Image i2=i1.getImage().getScaledInstance(1000, 1180,Image.SCALE_DEFAULT );
     ImageIcon i3=new ImageIcon(i2);
@@ -57,15 +57,15 @@ public class Deposit extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Please enter the Amount to you want to Deposit");
                 }else{
                     Conn c1 = new Conn();
-                    String query="insert into bank values('"+pin+"', '"+date+"', 'Deposit', '"+amount+"')";
+                    String query="insert into bank values('"+cardno+"', '"+date+"', 'Deposit', '"+amount+"')";
                     c1.statement.executeUpdate(query);
                     JOptionPane.showMessageDialog(null, "Rs. "+amount+" Deposited Successfully");
                     setVisible(false);
-                    new Transactions(pin).setVisible(true);
+                    new Transactions(cardno).setVisible(true);
                 }
             }else if(ae.getSource()==b2){
                 setVisible(false);
-                new Transactions(pin).setVisible(true);
+                new Transactions(cardno).setVisible(true);
             }
         }catch(Exception e){
             e.printStackTrace();

@@ -103,7 +103,7 @@ public void actionPerformed(ActionEvent ae){
             ResultSet rs = c1.statement.executeQuery(q);
             if(rs.next()){
                 setVisible(false);
-                new Transactions(pin).setVisible(true);
+                new Transactions(cardno).setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Incorrect Card Number or PIN");
             }

@@ -183,7 +183,27 @@ public void actionPerformed(ActionEvent ae){
     
     String pan = t1.getText();
     String aadhar = t2.getText();
+    boolean adharflag=false;
+    if(aadhar.charAt(0)!='0')
+    { 
+    	for(int i=0;i<aadhar.length();i++)
     
+    {
+    	if(aadhar.charAt(i)>='0'&&aadhar.charAt(i)<'9')
+    	{
+    		
+    	}
+    	else 
+    	{
+    		adharflag=true;
+    		break;
+    	}
+    }
+    }
+    else
+    {
+    	adharflag=true;
+    }
     String scitizen = "";
     if(r1.isSelected()){ 
         scitizen = "Yes";
@@ -200,9 +220,22 @@ public void actionPerformed(ActionEvent ae){
     }
     
     try{
-        if(t2.getText().equals("")){
+        if(t2.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null, "Fill all the required fields");
-        }else{
+        }
+        else if(pan.length()!=10)
+        {
+        	 JOptionPane.showMessageDialog(null, "Pan digit should be 10 only");
+        }
+        else if(aadhar.length()!=12)
+        {
+        	 JOptionPane.showMessageDialog(null, "adhar digit should be 12 only");
+        }
+        else if(adharflag)
+        {
+        	JOptionPane.showMessageDialog(null, "Adhar should be only digit and first digit shouldnot be 0");
+        }
+        else{
             Conn c1 = new Conn();
             String q1 = "insert into signuptwo values('"+formno+"','"+religion+"','"+category+"','"+income+"','"+education+"','"+occupation+"','"+pan+"','"+aadhar+"','"+scitizen+"','"+eaccount+"')";
             c1.statement.executeUpdate(q1);

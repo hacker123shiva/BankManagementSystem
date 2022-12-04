@@ -237,7 +237,7 @@ public  Signup3(String formno)
                     c1.statement.executeUpdate(q2);
                     JOptionPane.showMessageDialog(null, "Card Number: " + cardno + "\n Pin:"+ pin);
                     
-                    new Deposit(pin).setVisible(true);
+                    new Deposit(cardno).setVisible(true);
                     setVisible(false);
                 }
             

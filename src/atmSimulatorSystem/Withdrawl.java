@@ -11,11 +11,11 @@ public class Withdrawl extends JFrame implements ActionListener {
 	JTextField t1,t2;
     JButton b1,b2,b3;
     JLabel l1,l2,l3;
-    String pin;
+    String cardno;
     
- public Withdrawl(String pin)
+ public Withdrawl(String cardno)
     {setLayout(null);
-    	this.pin=pin;
+    	this.cardno=cardno;
     ImageIcon i1 =new ImageIcon(ClassLoader.getSystemResource("atmSimulatorSystem/icons/atm.jpg"));
     Image i2=i1.getImage().getScaledInstance(1000, 1180,Image.SCALE_DEFAULT );
     ImageIcon i3=new ImageIcon(i2);
@@ -72,7 +72,7 @@ public class Withdrawl extends JFrame implements ActionListener {
                 }else{
                     Conn c1 = new Conn();
                     
-                    ResultSet rs = c1.statement.executeQuery("select * from bank where pin = '"+pin+"'");
+                    ResultSet rs = c1.statement.executeQuery("select * from bank where cardnumber= '"+cardno+"'");
                     int balance = 0;
                     while(rs.next()){
                        if(rs.getString("type").equals("Deposit")){
@@ -86,15 +86,15 @@ public class Withdrawl extends JFrame implements ActionListener {
                         return;
                     }
                     
-                    c1.statement.executeUpdate("insert into bank values('"+pin+"', '"+date+"', 'Withdrawl', '"+amount+"')");
+                    c1.statement.executeUpdate("insert into bank values('"+cardno+"', '"+date+"', 'Withdrawl', '"+amount+"')");
                     JOptionPane.showMessageDialog(null, "Rs. "+amount+" Debited Successfully");
                     
                     setVisible(false);
-                    new Transactions(pin).setVisible(true);
+                    new Transactions(cardno).setVisible(true);
                 }
             }else if(ae.getSource()==b2){
                 setVisible(false);
-                new Transactions(pin).setVisible(true);
+                new Transactions(cardno).setVisible(true);
             }
         }catch(Exception e){
                 e.printStackTrace();

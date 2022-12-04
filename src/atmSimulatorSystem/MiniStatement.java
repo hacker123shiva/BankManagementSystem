@@ -13,7 +13,7 @@ public class MiniStatement extends JFrame implements ActionListener {
     JLabel l1;
     
     //create constructor with parameter contain pin
-    MiniStatement(String pin)
+    MiniStatement(String cardno)
     {   setTitle("MiniStatement");
     l1 = new JLabel();
     l1.setBounds(20, 140, 400, 200);
@@ -33,7 +33,7 @@ public class MiniStatement extends JFrame implements ActionListener {
     
     try {//sql part to check pin equal to given pin
     	Conn c=new Conn();
-        String query="select * from login where pin = '"+pin+"'";
+        String query="select * from login where cardnumber = '"+cardno+"'";
     	ResultSet rs=c.statement.executeQuery(query);
     	while(rs.next())
     	{
@@ -48,7 +48,7 @@ public class MiniStatement extends JFrame implements ActionListener {
     try {
     	int balance=0;
         Conn c =new Conn();
-        String query="select * from bank where pin = '"+pin+"'";
+        String query="select * from bank where cardnumber = '"+cardno+"'";
         ResultSet rs=c.statement.executeQuery(query);
         while(rs.next()){
             l1.setText(l1.getText() + "<html>"+rs.getString("date")+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br><html>");
