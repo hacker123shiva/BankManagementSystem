@@ -95,7 +95,7 @@ public void actionPerformed(ActionEvent ae)
 
           JOptionPane.showMessageDialog(null, "PIN changed successfully");
           setVisible(false);
-          new Transactions(rpin).setVisible(true);
+          new Transactions(cardno).setVisible(true);
 	  }
 	  else if(ae.getSource()==b2){
           new Transactions(cardno).setVisible(true);

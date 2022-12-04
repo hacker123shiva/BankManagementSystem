@@ -14,7 +14,7 @@ public class FastCash extends JFrame implements ActionListener{
     JButton b1, b2, b3, b4, b5, b6, b7, b8;
     JTextField t1;
     String cardno;
-	public FastCash(String pin)
+	public FastCash(String cardno)
 {
  setLayout(null);
  this.cardno=cardno;
@@ -77,7 +77,8 @@ public class FastCash extends JFrame implements ActionListener{
         try {
             String amount = ((JButton)ae.getSource()).getText().substring(3); //k
             Conn c = new Conn();
-            ResultSet rs = c.statement.executeQuery("select * from bank where cardnumber = '"+cardno+"'");
+            String query="select * from bank where cardnumber = '"+cardno+"'";
+            ResultSet rs = c.statement.executeQuery( query);
             int balance = 0;
             while (rs.next()) {
                 if (rs.getString("type").equals("Deposit")) {

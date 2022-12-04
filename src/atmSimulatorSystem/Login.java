@@ -118,9 +118,6 @@ public void actionPerformed(ActionEvent ae){
         e.printStackTrace();
     }
 }
-
-		
-	
     public static void main(String[] args){
        new Login().setVisible(true);
     }
