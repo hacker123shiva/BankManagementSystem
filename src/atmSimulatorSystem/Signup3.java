@@ -160,6 +160,7 @@ public  Signup3(String formno)
         c7.setBounds(100,680,600,20);
         add(c7);
         
+        
         b1 = new JButton("Submit");
         b1.setFont(new Font("Raleway", Font.BOLD, 14));
         b1.setBackground(Color.BLACK);
@@ -229,7 +230,12 @@ public  Signup3(String formno)
                 
                 if(atype.equals("")){
                     JOptionPane.showMessageDialog(null, "Fill all the required fields");
-                }else{
+                }
+                else if(!c7.isSelected())
+                {
+                	JOptionPane.showMessageDialog(null, "please declares that the above entered details correct ");
+                }
+                		else{
                     Conn c1 = new Conn();
                     String q1 = "insert into signupthree values('"+formno+"','"+atype+"','"+cardno+"','"+pin+"','"+facility+"')";  
                     String q2 = "insert into login values('"+formno+"','"+cardno+"','"+pin+"')";

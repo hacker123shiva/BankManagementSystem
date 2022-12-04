@@ -189,7 +189,7 @@ public void actionPerformed(ActionEvent ae){
     	for(int i=0;i<aadhar.length();i++)
     
     {
-    	if(aadhar.charAt(i)>='0'&&aadhar.charAt(i)<'9')
+    	if(aadhar.charAt(i)>='0'&&aadhar.charAt(i)<='9')
     	{
     		
     	}

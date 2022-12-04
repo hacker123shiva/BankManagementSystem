@@ -301,7 +301,7 @@ public void actionPerformed(ActionEvent ae) {
      String city = t5.getText();
      String pincode = t6.getText();
      boolean pinflag=false;
-     if(pincode.charAt(0)!=0)
+     if(pincode.charAt(0)!='0')
      {
         for(int i=0;i<pincode.length();i++)
      {
