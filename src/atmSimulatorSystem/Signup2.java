@@ -170,7 +170,7 @@ add(b);
  
 getContentPane().setBackground(Color.WHITE);
 setSize(850,750);
-setLocation(500,120);
+setLocation(500,0);
 setVisible(true);
 }
 

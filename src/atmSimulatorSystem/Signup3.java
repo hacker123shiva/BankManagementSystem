@@ -211,7 +211,7 @@ public  Signup3(String formno)
             try {
         	rs=	con.statement.executeQuery(q3);
              while(rs.next()) {
-            	if(cardno.equals(rs.getString("cardnumber")))
+            	if(!cardno.equals(rs.getString("cardnumber")))
             	{
             		
             	}
@@ -222,7 +222,7 @@ public  Signup3(String formno)
                 }
              if(flag)
              {
-            	 first7 =(ran.nextLong()%9000L)+1000L;
+            	 first7 =first7 = (ran.nextLong() % 90000000L) + 5040936000000000L;
             	 cardno = ""+Math.abs(first7);
              }
             }
@@ -242,7 +242,7 @@ public  Signup3(String formno)
             try {
         	rs=	con.statement.executeQuery(q3);
              while(rs.next()) {
-            	if(pin.equals(rs.getString("pin")))
+            	if(!pin.equals(rs.getString("pin")))
             	{
             		
             	}
