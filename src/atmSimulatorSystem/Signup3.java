@@ -182,6 +182,7 @@ public  Signup3(String formno)
         setLocation(500,0);
         setVisible(true);
     }
+
     
 	@Override
 	  public void actionPerformed(ActionEvent ae){
@@ -202,9 +203,66 @@ public  Signup3(String formno)
         long first7 = (ran.nextLong() % 90000000L) + 5040936000000000L;
         String cardno = "" + Math.abs(first7);
         
+        //condition to check cardnumber is unique
+        ResultSet rs;
+        boolean flag=false;
+            Conn con = new Conn();
+            String q3="Select cardnumber from login";
+            try {
+        	rs=	con.statement.executeQuery(q3);
+             while(rs.next()) {
+            	if(cardno.equals(rs.getString("cardnumber")))
+            	{
+            		
+            	}
+            	else
+            	{
+            		 flag=true;
+            	}
+                }
+             if(flag)
+             {
+            	 first7 =(ran.nextLong()%9000L)+1000L;
+            	 cardno = ""+Math.abs(first7);
+             }
+            }
+            
+            catch(Exception e )
+            {
+            	System.out.println(e);
+            }
+            
+        	
         long first3 = (ran.nextLong() % 9000L) + 1000L;
         String pin = "" + Math.abs(first3);
         
+     //condition to check pin is unique
+           flag=false;
+           q3="Select pin from login";
+            try {
+        	rs=	con.statement.executeQuery(q3);
+             while(rs.next()) {
+            	if(pin.equals(rs.getString("pin")))
+            	{
+            		
+            	}
+            	else
+            	{
+            		 flag=true;
+            	}
+             }
+             if(flag)
+             {
+            	 first3 =(ran.nextLong()%9000L)+1000L;
+            	 pin = ""+Math.abs(first3);
+             }
+            }
+             catch(Exception e)
+             {
+            	 System.out.println(e);
+             }
+        
+  
         String facility = "";
         if(c1.isSelected()){ 
             facility = facility + " ATM Card";

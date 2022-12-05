@@ -16,6 +16,34 @@ public class Signup extends JFrame implements  ActionListener{
 Random ran =new Random();
 long first4 =(ran.nextLong()%9000L)+1000L;
 String first = ""+Math.abs(first4);
+{ResultSet rs;
+boolean flag=false;
+    Conn con = new Conn();
+    String q1="Select formno from signup";
+    try {
+	rs=	con.statement.executeQuery(q1);
+     while(rs.next()) {
+    	if(first.equals(rs.getString("formno")))
+    	{
+    		
+    	}
+    	else
+    	{
+    		 flag=true;
+    	}
+        }
+     if(flag)
+     {
+    	 first4 =(ran.nextLong()%9000L)+1000L;
+    	 first = ""+Math.abs(first4);
+     }
+	} catch (SQLException e) {
+	 
+		e.printStackTrace();
+	}
+     
+}
+ 
 
 Signup(){
     setTitle("NEW ACCOUNT APPLICATION FORM");
@@ -343,7 +371,7 @@ public void actionPerformed(ActionEvent ae) {
      	   JOptionPane.showMessageDialog(null, "Enter Proper Fname"); 
           }
     	 
-          else if(age<18)
+          else if(age<18&&age>120)
           {
            JOptionPane.showMessageDialog(null,"Your age should greater than or equal to 18");
           }

@@ -29,20 +29,20 @@ statement.executeUpdate(query);
 query="use bms";
 statement.executeUpdate(query);
 
-//create table signup
-query="create table if not exists signup(formno varchar(20), name varchar(20), father_name varchar(20), dob varchar(30), gender varchar(20),email varchar(30), marital_status varchar(20), address varchar(40), city varchar(25), pincode varchar(20), state varchar(25))";
+//create table signup and make email as unique and formno as primary key
+query="create table if not exists signup(formno varchar(20), name varchar(20), father_name varchar(20), dob varchar(30), gender varchar(20),email varchar(30) unique, marital_status varchar(20), address varchar(40), city varchar(25), pincode varchar(20), state varchar(25),primary key(formno))";
 statement.executeUpdate(query);
 
-//create table signuptwo
-query="create table if not exists signuptwo(formno varchar(20), religion varchar(20), category varchar(20), income varchar(20), education varchar(20), occupation varchar(20), pan varchar(20), aadhar varchar(20), seniorcitizen varchar(20), existingaccount varchar(20))";
+//create table signuptwo and make formmno as foreign key reference signup
+query="create table if not exists signuptwo(formno varchar(20), religion varchar(20), category varchar(20), income varchar(20), education varchar(20), occupation varchar(20), pan varchar(20)  not null, aadhar varchar(20)  not null, seniorcitizen varchar(20), existingaccount varchar(20), primary key(formno))";
 statement.executeUpdate(query);
 
-//create table signupthree
-query="create table if not exists signupthree(formno varchar(20), accountType varchar(40), cardnumber varchar(25), pin varchar(10), facility varchar(100))";
+//create table signupthree and make cardnumber as primary key and foreign key as formno 
+query="create table if not exists signupthree(formno varchar(20) , accountType varchar(40), cardnumber varchar(25), pin varchar(10), facility varchar(100), primary key(cardnumber) )";
 statement.executeUpdate(query);
 
-//create table login
-query="create table if not exists login(formno varchar(20), cardnumber varchar(25), pin varchar(10))";
+//create table login and cardnumber as primary key
+query="create table if not exists login(formno varchar(20), cardnumber varchar(25), pin varchar(10), primary key(cardnumber))";
 statement.executeUpdate(query);
 
 //create bank table
