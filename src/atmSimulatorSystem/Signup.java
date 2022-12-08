@@ -14,8 +14,8 @@ public class Signup extends JFrame implements  ActionListener{
 	JButton b;
 	JDateChooser dateChooser;
 Random ran =new Random();
-long first4 =(ran.nextLong()%9000L)+1000L;
-String first = ""+Math.abs(first4);
+long first4 =Math.abs(ran.nextLong()%9000L)+1000L;
+String first = ""+ first4;
 {ResultSet rs;
 boolean flag=false;
     Conn con = new Conn();
@@ -34,8 +34,8 @@ boolean flag=false;
         }
      if(flag)
      {
-    	 first4 =(ran.nextLong()%9000L)+1000L;
-    	 first = ""+Math.abs(first4);
+    	 first4 =Math.abs(ran.nextLong()%9000L)+1000L;
+    	 first = ""+ first4;
      }
 	} catch (SQLException e) {
 	 
@@ -371,7 +371,7 @@ public void actionPerformed(ActionEvent ae) {
      	   JOptionPane.showMessageDialog(null, "Enter Proper Fname"); 
           }
     	 
-          else if(age<18&&age>120)
+          else if(age<18)
           {
            JOptionPane.showMessageDialog(null,"Your age should greater than or equal to 18");
           }

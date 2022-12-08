@@ -200,8 +200,8 @@ public  Signup3(String formno)
         }
         
         Random ran = new Random();
-        long first7 = (ran.nextLong() % 90000000L) + 5040936000000000L;
-        String cardno = "" + Math.abs(first7);
+        long first7 = Math.abs(ran.nextLong() % 90000000L) + 5040936000000000L;
+        String cardno = "" + first7;
         
         //condition to check cardnumber is unique
         ResultSet rs;
@@ -222,8 +222,8 @@ public  Signup3(String formno)
                 }
              if(flag)
              {
-            	 first7 =first7 = (ran.nextLong() % 90000000L) + 5040936000000000L;
-            	 cardno = ""+Math.abs(first7);
+            	 first7 =first7 = Math.abs(ran.nextLong() % 90000000L) + 5040936000000000L;
+            	 cardno = ""+first7;
              }
             }
             
@@ -233,8 +233,8 @@ public  Signup3(String formno)
             }
             
         	
-        long first3 = (ran.nextLong() % 9000L) + 1000L;
-        String pin = "" + Math.abs(first3);
+        long first3 = Math.abs(ran.nextLong() % 9000L) + 1000L;
+        String pin = "" +   first3;
         
      //condition to check pin is unique
            flag=false;
@@ -253,8 +253,8 @@ public  Signup3(String formno)
              }
              if(flag)
              {
-            	 first3 =(ran.nextLong()%9000L)+1000L;
-            	 pin = ""+Math.abs(first3);
+            	 first3 =Math.abs(ran.nextLong()%9000L)+1000L;
+            	 pin = ""+first3;
              }
             }
              catch(Exception e)

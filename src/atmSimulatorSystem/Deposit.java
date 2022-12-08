@@ -51,11 +51,29 @@ public class Deposit extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
         try{        
             String amount = t1.getText();
+            boolean amountflag=false;
+            for(int i=0;i<amount.length();i++)
+            {
+            	if(amount.charAt(i)>='0'&&amount.charAt(i)<='9')
+            	{
+            		
+            	}
+            	else
+            	{
+            		amountflag=true;
+            		break;
+            	}
+            }
             Date date = new Date();
             if(ae.getSource()==b1){
                 if(t1.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Please enter the Amount to you want to Deposit");
-                }else{
+                }
+                else if(amountflag)
+                {
+                	JOptionPane.showMessageDialog(null,"Please enter only digit to deposit money");
+                }
+                	else{
                     Conn c1 = new Conn();
                     String query="insert into bank values('"+cardno+"', '"+date+"', 'Deposit', '"+amount+"')";
                     c1.statement.executeUpdate(query);

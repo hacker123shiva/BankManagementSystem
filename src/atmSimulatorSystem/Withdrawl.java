@@ -59,13 +59,37 @@ public class Withdrawl extends JFrame implements ActionListener {
 
 	@Override
     public void actionPerformed(ActionEvent ae){
+		 String amount;
         try{        
-            String amount = t1.getText();
+            amount = t1.getText();
+            boolean amountflag=false;
+            for(int i=0;i<amount.length();i++)
+            {
+            	if(amount.charAt(i)>='0'&&amount.charAt(i)<='9')
+            	{
+            		
+            	}
+            	else
+            	{
+            		amountflag=true;
+            		break;
+            	}
+            }
             Date date = new Date();
             if(ae.getSource()==b1){
                 if(t1.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Please enter the Amount to you want to Withdraw");
-                }else{
+                }
+                else if(amountflag)
+                {
+                	JOptionPane.showMessageDialog(null, "Please enter digit to withdraw the money");
+                }
+                else if(Long.parseLong(amount)>10000)
+                {
+                	JOptionPane.showMessageDialog(null, "Please enter withdrawl value less than 10000");
+                }
+                	
+                else{
                     Conn c1 = new Conn();
                     
                     ResultSet rs = c1.statement.executeQuery("select * from bank where cardnumber= '"+cardno+"'");
